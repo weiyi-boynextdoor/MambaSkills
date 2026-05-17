@@ -27,12 +27,13 @@ Collect only what is needed:
 - Product name and category.
 - Core selling points.
 - Target customer.
-- Platform or aspect ratio.
+- Platform, aspect ratio, or exact image size.
 - Video length, if relevant.
 - Brand tone.
 - Required text, logo, or offer.
 - Product reference image or brand asset, if provided.
 - Additional reference images, such as model, scene, prop, styling, or mood references.
+- Output directory and filename pattern, if the user wants generated assets saved to disk.
 
 If inputs are missing, make reasonable ecommerce assumptions and state them briefly.
 For advertising video director requests, default to 16:9 and 8 seconds unless the user specifies otherwise.
@@ -56,9 +57,11 @@ Use this workflow when the user asks to generate the poster image itself.
 1. Build or refine the final English image prompt.
 2. Preserve user-provided product, brand, copy, color, and platform constraints.
 3. If the user provides a reference image or brand asset, keep product appearance, packaging, logo placement, and brand cues consistent unless the user asks for a redesign.
-4. Request a clean ecommerce composition with clear product focus and usable text space.
-5. Generate the image with the available image generation capability.
-6. Do not add extra commentary after image generation unless the user asks for analysis or revisions.
+4. Preserve requested aspect ratio or exact output size when the available image generation capability supports it.
+5. Request a clean ecommerce composition with clear product focus and usable text space.
+6. Generate the image with the available image generation capability.
+7. If the user specifies an output directory, save the generated image there using the requested filename pattern; avoid overwriting existing files.
+8. Do not add extra commentary after image generation unless the user asks for analysis or revisions.
 
 For image-specific guidance, read `references/poster-image.md`.
 

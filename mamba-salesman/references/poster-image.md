@@ -38,6 +38,11 @@ Before generating, ensure the prompt includes:
 - Brand tone and color direction.
 - Text-safe area.
 - Aspect ratio or platform.
+- Exact output size and save location, if requested.
+
+## Generation Failure Handling
+
+If image generation fails, stop immediately and report the failure. Do not create a substitute output, do not reuse or copy an existing image, do not crop, resize, composite, or otherwise modify unrelated assets to simulate a successful generation, and do not write a requested output file unless it comes from the successful generation result.
 
 ## Avoid
 
