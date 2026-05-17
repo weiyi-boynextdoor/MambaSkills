@@ -13,6 +13,7 @@ This directory contains Codex skills.
 
 - Each skill should live in its own directory.
 - Each skill directory should include `SKILL.md`.
+- Put incomplete feature notes inside the skill directory, preferably in `references/development.md`.
 - Optional files may be grouped as:
 	- `assets/`
 	- `references/`
