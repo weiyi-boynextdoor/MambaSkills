@@ -1,21 +1,21 @@
 ---
 name: mamba-salesman
-description: Create ecommerce advertising poster prompts, AI-generated poster images, and advertising video director specs for product ads, marketplace posters, social-commerce creatives, campaign visuals, and conversion-focused ecommerce ad concepts.
+description: Create ecommerce advertising poster prompts, AI-generated poster images, advertising video director specs, and Veo ad videos for product ads, marketplace posters, social-commerce creatives, campaign visuals, and conversion-focused ecommerce ad concepts.
 ---
 
 # MambaSalesman
 
-Create ecommerce ad poster prompts, AI poster images, and advertising video director specs.
+Create ecommerce ad poster prompts, AI poster images, advertising video director specs, and Veo advertising videos.
 
 ## Active Features
 
 - Generate advertising poster prompts.
 - Generate AI poster images from approved poster prompts.
 - Generate advertising video director specs for first-frame prompts, scripts, optional dialogue, and background music style.
+- Generate Veo advertising videos from video-director prompts and reference images.
 
 ## Planned Features
 
-- AI-generated advertising videos.
 - Multi-scene storyboards.
 
 For unfinished notes, read `references/development.md`.
@@ -81,10 +81,34 @@ Use this workflow when the user asks for advertising video concepts, video first
 
 For detailed video director patterns, read `references/video-director.md`.
 
+## Veo Video Generation Workflow
+
+Use this workflow when the user asks to generate the advertising video itself.
+
+1. Follow the Advertising Video Director Workflow first, then convert the spec into one production-ready English Veo prompt.
+2. Use the first-frame prompt, script beats, dialogue or voiceover, background music style, format, and negative direction as the generation prompt.
+3. Keep the product reference image as the first reference image whenever one is provided; add model, scene, styling, mood, or brand images after it.
+4. Default to model `veo-3.1-generate-001`, aspect ratio `16:9`, and 8 seconds unless the user specifies otherwise.
+5. Run `scripts/generate_veo_video.py` with `--prompt-file` or `--prompt`, any `--reference-image` values, `--aspect-ratio`, and `--output`.
+6. Load credentials from the skill-local `.env` by default. The script expects Google GenAI or Vertex AI environment variables such as `GOOGLE_GENAI_USE_VERTEXAI`, `GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION`, or API-key based auth supported by the installed SDK.
+7. If generation fails, report the failure directly; do not create a substitute video or copy unrelated media.
+
+Example:
+
+```bash
+python mamba-salesman/scripts/generate_veo_video.py \
+	--prompt-file outputs/video-prompt.txt \
+	--reference-image inputs/product.png \
+	--reference-image inputs/model.jpg \
+	--aspect-ratio 16:9 \
+	--output outputs/ad-video.mp4
+```
+
 ## Output Rules
 
 - Markdown and comments must be English.
 - Keep outputs direct and commercially useful.
 - Default to three strong variants unless the user asks for a different count.
 - Use tabs for indentation in files created for this skill.
-- For video director requests, output production-ready creative specs but do not claim that the final video has been generated.
+- For video director-only requests, output production-ready creative specs but do not claim that the final video has been generated.
+- For Veo generation requests, state the output video path only after the script successfully writes the mp4.

@@ -11,6 +11,7 @@ The advertising director capability prepares the creative inputs needed for AI a
 - Dialogue or voiceover, when useful.
 - Background music and sound direction.
 - Aspect ratio and duration.
+- A final Veo-ready prompt when the user asks to generate the video.
 
 Unless the user specifies otherwise, default to:
 
@@ -121,4 +122,31 @@ Use when helpful:
 
 ```text
 distorted product shape, changed logo, inaccurate packaging, extra fake labels, cluttered scene, overexposed highlights, unreadable text, awkward hands, unnatural face, exaggerated claims, medical claims, before-and-after result, low-resolution video, jittery camera
+```
+
+## Veo Prompt Packaging
+
+When generating the final video, condense the director spec into one English prompt for `scripts/generate_veo_video.py`.
+
+The Veo prompt should include:
+
+- Product accuracy requirements from `Product Reading`.
+- Reference image roles, especially product image first and supporting references after it.
+- Aspect ratio, duration, platform fit, camera movement, pacing, and transition style.
+- Time-coded story beats from `Script`.
+- Dialogue or voiceover lines, when present.
+- Background music and sound design direction.
+- Negative direction.
+
+Use this compact structure:
+
+```text
+Generate an [duration]-second ecommerce advertising video in [aspect ratio] for [product].
+Use reference image 1 as the exact product identity and preserve [non-negotiable details].
+Use the other reference images for [model/scene/styling/mood roles].
+Opening frame: [first-frame image prompt condensed].
+Motion plan: [time-coded script beats].
+Dialogue or voiceover: [lines or None].
+Music and sound: [background music style and sound design].
+Avoid: [negative direction].
 ```
