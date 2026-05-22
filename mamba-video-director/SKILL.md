@@ -26,4 +26,10 @@ Ask only for the missing constraints that matter now. If the user is still explo
 
 Ask for exact resolution only when the target platform, delivery requirement, or generation tool needs it.
 
+## Reference Files
+
+- Read `references/video-effects-prompts.md` when the user needs camera moves, visual effects, transition language, or prompt vocabulary for video direction.
+- Read `references/provider-input-limits.md` before promising model-specific reference-image, video-input, duration, or output-format behavior.
+- Read `references/provider-safety-review.md` before drafting prompts that may face moderation, likeness, rights, violence, sexual-content, or policy-review risk.
+
 For unfinished design notes, read `references/development.md`.
