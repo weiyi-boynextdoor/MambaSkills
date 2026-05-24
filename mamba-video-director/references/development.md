@@ -22,3 +22,9 @@ This skill is being developed iteratively through conversation.
 - Prompt structure for AI video generation.
 - Director guidance for subject, action, camera, scene, style, sound, timing, and constraints.
 - Output formats and prompt variants.
+
+## Future State Schema Versioning
+
+- The current `.mamba-video-director.json` protocol intentionally avoids a schema version because each running directory is expected to hold one short-lived video project.
+- If projects become long-lived or the state protocol needs compatibility guarantees, add explicit schema versioning.
+- When schema versioning is introduced, store each schema version as a separate reference file, such as `references/state-schema-v1.md` and `references/state-schema-v2.md`, instead of keeping multiple incompatible schemas inside `SKILL.md`.
