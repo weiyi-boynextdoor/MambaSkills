@@ -50,3 +50,5 @@ Thumbs.db
 .codex/
 .agents/
 .mamba-video-director.json
+
+.claude/
